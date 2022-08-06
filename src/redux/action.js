@@ -2,13 +2,8 @@ import * as types from "./actionTypes";
 import axios from "axios";
 
 const loadUser = () => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
-
   return axios
-    .get(
-      `${devEnv}` ? `${REACT_APP_DEV_URL}users` : `${REACT_APP_PROD_URL}users`
-    )
+    .get("/users")
     .then((res) => {
       console.log(res.data);
       return dispatch({ type: types.GET_USERS_SUCCESS, payload: res.data });
@@ -17,14 +12,8 @@ const loadUser = () => (dispatch) => {
 };
 
 const delUser = (id) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
   return axios
-    .delete(
-      `${devEnv}`
-        ? `${REACT_APP_DEV_URL}users/${id}`
-        : `${REACT_APP_PROD_URL}users/${id}`
-    )
+    .delete(`/users/${id}`)
     .then((res) => {
       dispatch({ type: types.DELETE_USERS_SUCCESS, payload: res.data });
     })
@@ -34,15 +23,8 @@ const delUser = (id) => (dispatch) => {
 };
 
 const addUser = (d) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
-
   return axios
-
-    .post(
-      `${devEnv}` ? `${REACT_APP_DEV_URL}users` : `${REACT_APP_PROD_URL}users`,
-      d
-    )
+    .post(`/users/`, d)
     .then((res) => {
       dispatch({ type: types.ADD_USERS_SUCCESS, payload: res.data });
     })
@@ -52,14 +34,8 @@ const addUser = (d) => (dispatch) => {
 };
 
 const getSingleUser = (id) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
   return axios
-    .get(
-      `${devEnv}`
-        ? `${REACT_APP_DEV_URL}users/${id}`
-        : `${REACT_APP_PROD_URL}users/${id}`
-    )
+    .get(`/users/${id}`)
     .then((res) => {
       dispatch({ type: types.SINGLE_USERS_SUCCESS, payload: res.data });
     })
@@ -69,34 +45,20 @@ const getSingleUser = (id) => (dispatch) => {
 };
 
 const editUser = (id, data) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
   console.log(id, data);
   return axios
-    .put(
-      `${devEnv}`
-        ? `${REACT_APP_DEV_URL}users/${id}`
-        : `${REACT_APP_PROD_URL}users/${id}`,
-      data
-    )
+    .put(`/users/${id}`, data)
     .then(() => {
       //dispatch({ type: types.EDIT_USERS_SUCCESS});
     })
     .catch(() => {
       // dispatch({ type: types.EDIT_USERS_FAILURE });
     });
-}
+};
 
 const searchProd = (query) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
-
   return axios
-    .get(
-      `${devEnv}`
-        ? `${REACT_APP_DEV_URL}users?q=${query}`
-        : `${REACT_APP_PROD_URL}uesers?q=${query}`
-    )
+    .get(`/users/?q=${query}`)
     .then((res) => {
       return dispatch({ type: types.SEARCH_USERS_SUCCESS, payload: res.data });
     })
@@ -106,14 +68,8 @@ const searchProd = (query) => (dispatch) => {
 };
 
 const addCart = (payload) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
   return axios
-    .post(
-      `${devEnv}`
-        ? `${REACT_APP_DEV_URL}cart`
-        : `${REACT_APP_PROD_URL}cart`, payload
-    )
+    .post(`/cart`, payload)
     .then((res) => {
       return dispatch({ type: types.ADD_CART_SUCCESS, payload: res.data });
     })
@@ -123,10 +79,8 @@ const addCart = (payload) => (dispatch) => {
 };
 
 const loadCart = () => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
   return axios
-    .get(`${devEnv}` ? `${REACT_APP_DEV_URL}cart` : `${REACT_APP_PROD_URL}cart`)
+    .get("/cart")
     .then((res) => {
       return dispatch({ type: types.GET_CART_SUCCESS, payload: res.data });
     })
@@ -136,14 +90,8 @@ const loadCart = () => (dispatch) => {
 };
 
 const delCart = (id) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
   return axios
-    .delete(
-      `${devEnv}`
-        ? `${REACT_APP_DEV_URL}cart/${id}`
-        : `${REACT_APP_PROD_URL}cart/${id}`
-    )
+    .delete(`/cart/${id}`)
     .then((res) => {
       return dispatch({ type: types.DELETE_CART_SUCCESS, payload: res.data });
     })
@@ -153,14 +101,8 @@ const delCart = (id) => (dispatch) => {
 };
 
 const addBill = (d) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
   return axios
-    .post(
-      `${devEnv}`
-        ? `${REACT_APP_DEV_URL}bill`
-        : `${REACT_APP_PROD_URL}bill`, d
-    )
+    .post(`/bill`, d)
     .then((res) => {
       return dispatch({ type: types.ADD_BILL_SUCCESS, payload: res.data });
     })
@@ -170,10 +112,8 @@ const addBill = (d) => (dispatch) => {
 };
 
 const loadBill = () => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
   return axios
-    .get(`${devEnv}` ? `${REACT_APP_DEV_URL}bill` : `${REACT_APP_PROD_URL}bill`)
+    .get("/bill")
     .then((res) => {
       return dispatch({ type: types.GET_BILL_SUCCESS, payload: res.data });
     })
@@ -183,14 +123,8 @@ const loadBill = () => (dispatch) => {
 };
 
 const singleBill = (id) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
   return axios
-    .get(
-      `${devEnv}`
-        ? `${REACT_APP_DEV_URL}bill/${id}`
-        : `${REACT_APP_PROD_URL}bill/${id}`
-    )
+    .get(`/bill/${id}`)
     .then((res) => {
       return dispatch({
         type: types.GET_SINGLE_BILL_SUCCESS,
@@ -201,33 +135,28 @@ const singleBill = (id) => (dispatch) => {
 };
 
 const editBill = (id, data) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
-  return axios
-    .put(
-      `${devEnv}`
-        ? `${REACT_APP_DEV_URL}bill/${id}`
-        : `${REACT_APP_PROD_URL}bill/${id}`, data
-    )
-    .then(() => {
-      return dispatch({ type: types.EDIT_BILL_SUCCESS });
-    });
+  return axios.put(`/bill/${id}`, data).then(() => {
+    return dispatch({type : types.EDIT_BILL_SUCCESS})
+  })
 };
 
 const delBill = (id) => (dispatch) => {
-  const devEnv = process.env.NODE_ENV !== "production";
-  const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
   return axios
-    .delete(
-      `${devEnv}`
-        ? `${REACT_APP_DEV_URL}bill/${id}`
-        : `${REACT_APP_PROD_URL}bill/${id}`
-    )
+    .delete(`/bill/${id}`)
     .then((res) => {
       return dispatch({ type: types.DELETE_BILL_SUCCESS, payload: res.data });
     })
-    .catch((err) => console.log(err));
+    .catch((err) =>
+      console.log(err)
+    );
 };
+
+
+
+
+
+
+
 
 export {
   loadUser,
