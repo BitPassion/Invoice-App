@@ -53,20 +53,4 @@ the bill to a perticular customer or doctor and it's automatically genreates the
 
 ## Deployment Link: 
    http://premmed.herokuapp.com//
-   
-
-## Authors: 
-
-1. Suraj Kumar Gupta :
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/Surajbnp)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/suraj-kumar-gupta-058191222/) 
-
-
-
-## Feedback: 
-If you have any feedback, any suggestion please reach out to us at 
-surajguptabnp14c@gmail.com,
-
-
-
 
